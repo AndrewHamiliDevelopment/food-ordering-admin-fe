@@ -1,10 +1,47 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+import "./App.css";
+import { Api, Category, Paginated, PaymentMethod, Product } from "./api";
+import React from "react";
+import { store, useStore } from "./store";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+  const [user, setUser] = React.useState<firebase.default.User | undefined>(
+    undefined
+  );
+  const [isReady, setIsReady] = React.useState(false);
+  const snap = useStore();
+
+  const api = new Api(import.meta.env.VITE_API_BASE_URL, user);
+
+  React.useEffect(() => {
+    const requests = [
+      api.getProducts({}),
+      api.getCategories({}),
+      api.getPaymentMethods({}),
+    ];
+
+    const getResponses = async () => {
+      try {
+        const responses = await Promise.all(requests);
+        store.paginatedProducts = responses[0].data as Paginated<Product>;
+        store.paginatedCategories = responses[1].data as Paginated<Category>;
+        store.paginatedPaymentMethods = responses[2]
+          .data as Paginated<PaymentMethod>;
+        //setIsReady(true);
+      } catch (error) {
+        console.error("error", error);
+      }
+    };
+
+    getResponses();
+  }, []);
+
+  React.useEffect(() => {
+    console.log("🚀 ~ React.useEffect ~ snap:", snap)
+  }, [snap]);
 
   return (
     <>
@@ -29,7 +66,7 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
