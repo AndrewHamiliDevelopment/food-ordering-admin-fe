@@ -10,15 +10,27 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/icons-material": "^6.4.6",
+    "@mui/material": "^6.4.6",
+    "@react-firebase/auth": "^0.2.10",
     "axios": "^1.8.1",
+    "bootstrap": "^5.3.3",
     "firebase": "8.10.1",
     "food-ordering-admin-fe": "file:",
+    "formik": "^2.4.6",
+    "lodash": "^4.17.21",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-icons": "^5.5.0",
+    "react-router-dom": "^7.2.0",
     "valtio": "^2.1.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",
+    "@types/bootstrap": "^5",
+    "@types/lodash": "^4",
     "@types/node": "^22.13.5",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",

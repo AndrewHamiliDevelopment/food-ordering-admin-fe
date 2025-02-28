@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import './Profile.css';
 
-const Profile = ({ products, addProduct, deleteProduct, editProduct }) => {
+const Profile = ({ api }) => {
   const [selectedGender, setSelectedGender] = useState('');
   const [selectedSection, setSelectedSection] = useState('Personal Information');
   const [profileImage, setProfileImage] = useState(null);
