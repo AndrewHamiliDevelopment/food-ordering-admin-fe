@@ -1,0 +1,64 @@
+{
+  "name": "food-ordering-admin-fe",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "license": "MIT", 
+
+  "scripts": {
+    "start": "react-scripts start",
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/icons-material": "^6.4.6",
+    "@mui/material": "^6.4.6",
+    "@react-firebase/auth": "^0.2.10",
+    "ajv": "^8.17.1",
+    "ajv-keywords": "^5.1.0",
+    "axios": "^1.8.2",
+    "bootstrap": "^5.3.3",
+    "firebase": "^8.10.1",
+    "food-ordering-admin-fe": "file:",
+    "formik": "^2.4.6",
+    "lodash": "^4.17.21",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-icons": "^5.5.0",
+    "react-router-dom": "^7.2.0",
+    "valtio": "^2.1.3"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.19.0",
+    "@types/bootstrap": "^5",
+    "@types/firebase": "^2.4.32",
+    "@types/lodash": "^4",
+    "@types/node": "^22.13.5",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "@vitejs/plugin-react": "^4.3.4",
+    "eslint": "^9.19.0",
+    "eslint-plugin-react-hooks": "^5.0.0",
+    "eslint-plugin-react-refresh": "^0.4.18",
+    "globals": "^15.14.0",
+    "typescript": "~5.7.2",
+    "typescript-eslint": "^8.22.0",
+    "vite": "^6.1.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
