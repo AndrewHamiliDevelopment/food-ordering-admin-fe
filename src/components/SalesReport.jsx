@@ -1,9 +1,11 @@
 import React from "react";
-import "./Profile.css";
+import "./SalesReport.css";
 
 const SalesReport = () => {
   return (
+  
     <div className="sales-report">
+      <h2>Sales Report</h2>
       <div className="top-cards">
         <div className="card income">
           <h3>$53,000</h3>
@@ -27,12 +29,12 @@ const SalesReport = () => {
             <div className="progress-bar red"></div>
           </div>
           <div className="stat">
-            <h4>34,789 <span>Active Installations</span></h4>
+            <h4>34,789 <span>Total Expense</span></h4>
             <p className="progress-text">76% higher than last month</p>
             <div className="progress-bar purple"></div>
           </div>
           <div className="stat">
-            <h4>46,567 <span>Total Downloads</span></h4>
+            <h4>46,567 <span>Visits</span></h4>
             <p className="progress-text">76% higher than last month</p>
             <div className="progress-bar green"></div>
           </div>

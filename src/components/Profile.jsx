@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { FaEdit, FaTrash } from 'react-icons/fa';
-import { Route, Routes, Link } from 'react-router-dom';
+import { FaEdit, FaTrash, FaUser, FaUsers, FaBox, FaChartBar, FaMoneyBill, FaMotorcycle } from 'react-icons/fa';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import PersonalInformation from './PersonalInformation';
 import UserManagement from './UserManagement';
 import ProductManagement from './ProductManagement';
@@ -18,6 +18,7 @@ const Profile = ({ products, addProduct, deleteProduct, editProduct }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [editProductId, setEditProductId] = useState(null);
   const [productCategory, setProductCategory] = useState('All');
+  const navigate = useNavigate();
 
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
@@ -52,12 +53,12 @@ const Profile = ({ products, addProduct, deleteProduct, editProduct }) => {
         </div>
         <nav>
           <ul>
-            <li><Link to="/profile/personal-information">Personal Information</Link></li>
-            <li><Link to="/profile/user-management">User Management</Link></li>
-            <li><Link to="/profile/product-management">Product Management</Link></li>
-            <li><Link to="/profile/sales-report">Sales Report</Link></li>
-            <li><Link to="/profile/transactions">Transactions</Link></li>
-            <li><Link to="/profile/riders-management">Riders Management</Link></li>
+            <li><button className="nav-button" onClick={() => navigate('/profile/personal-information')}><FaUser className="nav-icon" /> Personal Information</button></li>
+            <li><button className="nav-button" onClick={() => navigate('/profile/user-management')}><FaUsers className="nav-icon" /> User Management</button></li>
+            <li><button className="nav-button" onClick={() => navigate('/profile/product-management')}><FaBox className="nav-icon" /> Product Management</button></li>
+            <li><button className="nav-button" onClick={() => navigate('/profile/sales-report')}><FaChartBar className="nav-icon" /> Sales Report</button></li>
+            <li><button className="nav-button" onClick={() => navigate('/profile/transactions')}><FaMoneyBill className="nav-icon" /> Transactions</button></li>
+            <li><button className="nav-button" onClick={() => navigate('/profile/riders-management')}><FaMotorcycle className="nav-icon" /> Riders Management</button></li>
           </ul>
         </nav>
       </aside>

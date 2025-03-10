@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Profile.css";
+import "./Transactions.css";
 
 const Transactions = () => {
   const [transactions] = useState([

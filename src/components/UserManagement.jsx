@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import "./UsersManagement.css";
+
 
 const UserManagement = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -55,8 +57,6 @@ const UserManagement = () => {
               <td>{user.updated}</td>
               <td>
                 <button className="edit-btn">✏️</button>
-                <button className="refresh-btn">🔄</button>
-                <button className="pause-btn">⏸️</button>
                 <button className="delete-btn">❌</button>
               </td>
             </tr>

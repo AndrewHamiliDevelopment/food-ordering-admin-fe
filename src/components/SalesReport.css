@@ -1,0 +1,104 @@
+/* Sales-Report */
+.sales-report {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background: #f8f9fa;
+    border-radius: 10px;
+  }
+  
+  .top-cards {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .card {
+    flex: 1;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    color: white;
+  }
+  
+  .income { background: linear-gradient(to right, #ff7e5f, #feb47b); }
+  .expense { background: linear-gradient(to right, #9f5fd7, #c572ff); }
+  .visit { background: linear-gradient(to right, #56ab2f, #a8e063); }
+  
+  .bottom-section {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .stats-container {
+    flex: 1;
+  }
+  
+  .stat {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+  
+  .stat h4 {
+    font-size: 18px;
+    margin: 0;
+  }
+  
+  .stat span {
+    font-size: 14px;
+    color: gray;
+  }
+  
+  .progress-text {
+    font-size: 12px;
+    color: gray;
+  }
+  
+  .progress-bar {
+    height: 5px;
+    border-radius: 4px;
+    margin-top: 5px;
+  }
+  
+  .red { background: red; width: 42%; }
+  .purple { background: purple; width: 76%; }
+  .green { background: green; width: 76%; }
+  
+  .chart-container {
+    flex: 1;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+  .chart-buttons {
+    margin-bottom: 15px;
+  }
+  
+  .chart-buttons button {
+    margin: 0 5px;
+    padding: 8px 15px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .chart-buttons .active {
+    background: #007bff;
+    color: white;
+  }
+  
+  .chart {
+    height: 200px;
+    background: #eef1f6;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+
+
+

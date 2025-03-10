@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Profile.css";
+import "./RidersManagement.css";
 
 const RidersManagement = () => {
   const [transactions] = useState([
@@ -40,6 +40,7 @@ const RidersManagement = () => {
         
         <input type="text" placeholder="Rider ID No." />
         <button className="apply-btn">Search</button>
+        <button className="apply-btn">Add Rider</button>
       </div>
 
       <table className="transaction-table">
