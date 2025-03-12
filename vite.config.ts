@@ -3,14 +3,14 @@ import react from '@vitejs/plugin-react'
 
 // https://vite.dev/config/
 
-export default ({ mode }) => {
-  process.env = {...process.env, ...loadEnv(mode, process.cwd())};
+export default ({ mode }: {mode: string}) => {
+  const env = loadEnv(mode, process.cwd());
 
   // import.meta.env.VITE_NAME available here with: process.env.VITE_NAME
   // import.meta.env.VITE_PORT available here with: process.env.VITE_PORT
 
-  console.log("🚀 ~ mode:", mode)
-  console.log("🚀 ~ STAGING_API_URL:", process.env.STAGING_API_URL)
+  console.log("🚀 ~ mode:", mode);
+  console.log("🚀 ~ STAGING_API_URL:",env.VITE_STAGING_API_URL);
   
 
   return defineConfig({
@@ -19,11 +19,11 @@ export default ({ mode }) => {
           '/api': {
             secure: false,
             changeOrigin: true,
-            target: process.env.STAGING_API_URL
-          }
-        }
+            target: process.env.VITE_STAGING_API_URL,
+          },
+        },
     },
       plugins: [react()],
   });
-}
+};
   

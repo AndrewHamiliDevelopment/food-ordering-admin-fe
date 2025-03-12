@@ -1,5 +1,13 @@
 import axios, { AxiosInstance, AxiosResponse } from "axios";
-import firebase from "firebase";
+import firebase from "firebase/app";
+import "firebase/auth";
+
+export enum ORDER_STATUS {
+    PENDING = 'PENDING',
+    PROCESSING = 'PROCESSING',
+    IN_TRANSIT = 'IN TRANSIT',
+    DELIVERED = 'DELIVERED'
+}
 
 export interface Paginated<T> {
     data: T[];
@@ -17,7 +25,7 @@ export interface UserDetail {
     middleName: string;
 }
 
-export interface User {
+export interface AppUser {
     uid: string;
     displayName: string;
     email: string;
@@ -45,6 +53,7 @@ export interface Category {
 }
 
 export interface Product {
+    id: string;
     name: string;
     description: string;
     category: Category;
@@ -73,13 +82,30 @@ export interface PaymentMethod {
     enabled: boolean;
 }
 
+export interface Address {
+    line1: string;
+    line2: string;
+    cityMunicipality: string;
+    province: string;
+    zipCode: string;
+    recipientName: string;
+    contactNumber: string;
+}
+
+export interface Order {
+    cart: Cart;
+    status: ORDER_STATUS;
+    address: Address[];
+    paymentMethod: PaymentMethod;
+}
+
 export class Api {
     private readonly axiosInstance: AxiosInstance;
     constructor(baseURL: string, private readonly user?: firebase.User) {
         this.axiosInstance = axios.create({baseURL});
     }
 
-    getMe = async (): Promise<AxiosResponse<User>> => {
+    getMe = async (): Promise<AxiosResponse<AppUser>> => {
         if(!this.user) {
             throw new Error('Firebase user not available')
         }
@@ -138,7 +164,7 @@ export class Api {
         }
         return await this.axiosInstance.get('/v1/categories', { params })
     }
-    getResources = async (props: {page?: number; size?: number;}): Promise<AxiosResponse<Resource>> => {
+    getResources = async (props: {page?: number; size?: number;}): Promise<AxiosResponse<Paginated<Resource>>> => {
         const {page, size} = props;
         const params = new URLSearchParams();
         if(page) {
@@ -149,4 +175,45 @@ export class Api {
         }
         return await this.axiosInstance.get('/v1/resource', { params })
     }
-}
+    getOrders = async (props: {page?: number; size?: number;}): Promise<AxiosResponse<Paginated<Order>>> => {
+        const {page, size} = props;
+        const params = new URLSearchParams();
+        if(page) {
+            params.append('page', `${page}`);
+        }
+        if(size) {
+            params.append('size', `${size}`);
+        }
+        if(!this.user) {
+            throw new Error('Firebase user not available')
+        }
+        return await this.axiosInstance.get('/v1/orders', { headers: {Authorization: `Bearer ${await this.user.getIdToken()}`}, params });
+    }
+        createProduct = async (productData: Product): Promise<AxiosResponse<Product>> => {
+            if (!this.user) {
+                throw new Error('Firebase user not available');
+            }
+            return await this.axiosInstance.post('/v1/products', productData, {
+                headers: { Authorization: `Bearer ${await this.user.getIdToken()}` }
+            });
+        }
+        
+        updateProduct = async (productId: string, updatedData: Partial<Product>): Promise<AxiosResponse<Product>> => {
+            if (!this.user) {
+                throw new Error('Firebase user not available');
+            }
+            return await this.axiosInstance.put(`/v1/products/${productId}`, updatedData, {
+                headers: { Authorization: `Bearer ${await this.user.getIdToken()}` }
+            });
+        }
+        
+        deleteProduct = async (productId: string): Promise<AxiosResponse<void>> => {
+            if (!this.user) {
+                throw new Error('Firebase user not available');
+            }
+            return await this.axiosInstance.delete(`/v1/products/${productId}`, {
+                headers: { Authorization: `Bearer ${await this.user.getIdToken()}` }
+            });
+        }
+        
+ }

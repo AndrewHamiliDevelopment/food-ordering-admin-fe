@@ -5,7 +5,7 @@ import Header from "./components/Header";
 import LoginSignup from "./components/LoginSignup";
 import Menu from "./components/Menu";
 import Profile from "./components/Profile";
-import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function App() {
   const [isLoginOpen, setIsLoginOpen] = useState(false);

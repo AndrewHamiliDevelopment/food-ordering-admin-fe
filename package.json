@@ -11,14 +11,20 @@
   },
   "dependencies": {
     "axios": "^1.8.1",
-    "firebase": "8.10.1",
+    "bootstrap": "^5.3.3",
+    "firebase": "^8.10.1",
     "food-ordering-admin-fe": "file:",
+    "formik": "^2.4.6",
     "react": "^19.0.0",
+    "react-bootstrap": "^2.10.9",
     "react-dom": "^19.0.0",
+    "react-icons": "^5.5.0",
+    "react-router-dom": "^7.3.0",
     "valtio": "^2.1.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",
+    "@types/jquery": "^3.5.32",
     "@types/node": "^22.13.5",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
