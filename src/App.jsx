@@ -7,6 +7,8 @@ import Menu from "./components/Menu";
 import Profile from "./components/Profile";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+
+
 function App() {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -25,7 +27,7 @@ function App() {
 
       <main style={{ filter: isLoginOpen ? "blur(3px)" : "none", pointerEvents: isLoginOpen ? "none" : "auto" }}>
         <Routes>
-        <Route path="/profile" element={<Profile products={products} addProduct={addProduct} />} />
+        <Route path="/profile/*" element={<Profile products={products} addProduct={addProduct} />} />
         <Route path="/menu" element={<Menu foodItems={products} />} />
         </Routes>
       </main>

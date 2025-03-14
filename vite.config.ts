@@ -10,7 +10,7 @@ export default ({ mode }) => {
   // import.meta.env.VITE_PORT available here with: process.env.VITE_PORT
 
   console.log("🚀 ~ mode:", mode)
-  console.log("🚀 ~ STAGING_API_URL:", process.env.STAGING_API_URL)
+  console.log("🚀 ~ STAGING_API_URL:", process.env.VITE_STAGING_API_URL)
   
 
   return defineConfig({
@@ -19,7 +19,7 @@ export default ({ mode }) => {
           '/api': {
             secure: false,
             changeOrigin: true,
-            target: process.env.STAGING_API_URL
+            target: process.env.VITE_STAGING_API_URL
           }
         }
     },
