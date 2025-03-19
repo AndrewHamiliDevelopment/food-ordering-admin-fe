@@ -1,11 +1,21 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";  
 import "./App.css";
 import Header from "./components/Header";
 import LoginSignup from "./components/LoginSignup";
 import Menu from "./components/Menu";
 import Profile from "./components/Profile";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 1, // Prevent infinite retries
+      refetchOnWindowFocus: false, // Disable auto-refetch
+    },
+  },
+});
 
 function App() {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
@@ -20,18 +30,21 @@ function App() {
   };
 
   return (
-    <Router>
-      <Header isLoginOpen={isLoginOpen} setIsLoginOpen={setIsLoginOpen} setSearchQuery={setSearchQuery} />
+    <QueryClientProvider client={queryClient}>  
+      <Router>
+        <Header isLoginOpen={isLoginOpen} setIsLoginOpen={setIsLoginOpen} setSearchQuery={setSearchQuery} />
 
-      <main style={{ filter: isLoginOpen ? "blur(3px)" : "none", pointerEvents: isLoginOpen ? "none" : "auto" }}>
-        <Routes>
-        <Route path="/profile" element={<Profile products={products} addProduct={addProduct} />} />
-        <Route path="/menu" element={<Menu foodItems={products} />} />
-        </Routes>
-      </main>
+        <main style={{ filter: isLoginOpen ? "blur(3px)" : "none", pointerEvents: isLoginOpen ? "none" : "auto" }}>
+          <Routes>
+            <Route path="/" element={<Menu foodItems={products} />} />
+            <Route path="/profile/*" element={<Profile products={products} addProduct={addProduct} />} />
+            <Route path="/menu" element={<Menu foodItems={products} />} />
+          </Routes>
+        </main>
 
-      {isLoginOpen && <LoginSignup isOpen={isLoginOpen} setIsOpen={setIsLoginOpen} />}
-    </Router>
+        {isLoginOpen && <LoginSignup isOpen={isLoginOpen} setIsOpen={setIsLoginOpen} />}
+      </Router>
+    </QueryClientProvider>
   );
 }
 

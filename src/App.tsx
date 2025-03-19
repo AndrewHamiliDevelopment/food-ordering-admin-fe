@@ -1,8 +1,6 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import React from "react";
-import { store, useStore } from "./store";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { useStore } from "./store";
 import {
   FirebaseAuthConsumer,
   FirebaseAuthProvider,
@@ -11,9 +9,17 @@ import {
   AuthEmission,
   InitializeAppArgs,
 } from "@react-firebase/auth/dist/types";
-import firebase from "firebase";
+import firebase from "firebase/app";
+import "firebase/auth";
+
 import Login from "./pages/Login";
 import Main from "./pages/Main";
+
+
+// Create a QueryClient instance
+const queryClient = new QueryClient();
+
+
 
 function App() {
   const snap = useStore();
@@ -37,7 +43,7 @@ function App() {
   };
 
   return (
-    <>
+     <QueryClientProvider client={queryClient}>
       <FirebaseAuthProvider {...firebaseApp}>
         <FirebaseAuthConsumer>
           {(ae: AuthEmission) => (
@@ -56,7 +62,7 @@ function App() {
           )}
         </FirebaseAuthConsumer>
       </FirebaseAuthProvider>
-    </>
+        </QueryClientProvider>
   );
 }
 

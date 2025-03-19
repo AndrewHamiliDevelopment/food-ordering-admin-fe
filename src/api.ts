@@ -74,7 +74,7 @@ export interface CartItem {
 }
 
 export interface PaymentMethod {
-    name: string;
+    mena: string;
     description: string;
     additionalNotes: string;
     enabled: boolean;

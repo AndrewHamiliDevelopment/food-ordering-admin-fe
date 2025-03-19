@@ -82,7 +82,7 @@ const Main: React.FC<Props> = (props) => {
           >
             <Routes>
               <Route
-                path="/profile"
+                path="/profile/*"
                 element={
                   <Profile api={api} />
                 }
